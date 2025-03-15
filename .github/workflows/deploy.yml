@@ -1,67 +1,26 @@
 # @format
 
-name: Deploy Next.js App
+name: Deploy NestJS to VPS
 
 on:
     push:
         branches:
-            - main # Деплой при пуше в `main`
-    pull_request:
-        branches:
-            - main # Проверка при Pull Request
+            - main # Запуск при пуше в main
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-
-        steps:
-            - name: 📥 Клонируем репозиторий
-              uses: actions/checkout@v4
-
-            - name: 📦 Устанавливаем Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 18
-                  cache: "npm"
-
-            - name: 📦 Устанавливаем зависимости
-              run: npm install
-
-            - name: 🔨 Сборка Next.js
-              run: npm run build
-
-            - name: ✅ Запуск тестов
-              run: npm test
-
     deploy:
-        needs: build
         runs-on: ubuntu-latest
 
         steps:
-            - name: 📥 Клонируем репозиторий
-              uses: actions/checkout@v4
-
-            - name: 📦 Устанавливаем Node.js
-              uses: actions/setup-node@v4
+            - name: Deploy to VPS via SSH
+              uses: appleboy/ssh-action@v1.0.3
               with:
-                  node-version: 18
-                  cache: "npm"
-
-            - name: 📦 Устанавливаем зависимости
-              run: npm install
-
-            - name: 🔨 Сборка Next.js
-              run: npm run build
-
-            - name: 🚀 Деплой на сервер
-              uses: appleboy/ssh-action@master
-              with:
-                  host: ${{ secrets.SSH_HOST }}
-                  username: ${{ secrets.SSH_USER }}
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USER }}
                   key: ${{ secrets.SSH_PRIVATE_KEY }}
                   script: |
                       cd /var/www/server.top24.kz
                       git pull origin main
                       npm install
-                      npm run build
+                      npm build
                       pm2 restart server
