@@ -20,7 +20,7 @@ import { TasksService } from "./tasks.service";
             host: "localhost",
             port: 5432,
             username: "postgres",
-            password: "root",
+            password: "Kimxan110784",
             database: "portal",
             models: [Post, Category, Query],
             synchronize: true,
