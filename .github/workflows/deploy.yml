@@ -18,12 +18,12 @@ jobs:
                   username: ${{ secrets.USER }}
                   key: ${{ secrets.SSH_PRIVATE_KEY }}
                   script: |
-                      	export NVM_DIR=~/.nvm
-                        source ~/.nvm/nvm.sh
-                        nvm use 22
-                        cd /var/www/server.top24.kz
-                        git pull origin main
-                        rm -rf node_modules package-lock.json dist
-                        npm install
-                        npm run build
-                        pm2 restart server
+                      export NVM_DIR="$HOME/.nvm"
+                      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+                      nvm use 22
+                      cd /var/www/server.top24.kz
+                      git pull origin main
+                      rm -rf node_modules package-lock.json dist
+                      npm install
+                      npm run build
+                      pm2 restart server
