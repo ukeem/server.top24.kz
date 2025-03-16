@@ -18,10 +18,10 @@ import { PostsService } from "./posts/posts.service";
 //         }
 //     }
 // }
-export class TasksService {
+export class TasksService implements OnModuleInit {
     constructor(private readonly postsService: PostsService) {}
 
-    @Cron("0 47 */12 * * *")
+    @Cron("0 0,144 0-23 * * *")
     async handleCron1() {
         console.log("⏳ Запуск addPosts()...");
         try {
@@ -32,8 +32,18 @@ export class TasksService {
         }
     }
 
-    @Cron("0 0 * * *") // Раз в день в полночь
+    @Cron("0 0 0 * * *")
     async handleCron2() {
+        console.log("⏳ Запуск truncateQueries()...");
+        try {
+            await this.postsService.truncateQueries();
+            console.log("✅ truncateQueries() выполнен успешно.");
+        } catch (error) {
+            console.error("❌ Ошибка в truncateQueries():", error);
+        }
+    }
+
+    async onModuleInit() {
         console.log("⏳ Запуск truncateQueries()...");
         try {
             await this.postsService.truncateQueries();

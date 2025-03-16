@@ -106,7 +106,7 @@ export class PostsService {
             let q = 0;
 
             for (const query of allQueries) {
-                if (q >= 5) break; // Ограничиваем 5 новыми заголовками
+                if (q >= 1) break; // Ограничиваем 5 новыми заголовками
                 const existingQuery = await this.queryModel.findOne({
                     where: { name: query },
                 });
