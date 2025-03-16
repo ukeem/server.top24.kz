@@ -74,7 +74,13 @@ export class PostsService {
             "https://trends.google.com/trending?geo=KZ&sort=search-volume&hours=24";
         const browser = await puppeteer.launch({
             headless: true,
-            args: ["--no-sandbox", "--disable-setuid-sandbox"],
+            args: [
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-blink-features=AutomationControlled",
+                "--disable-web-security",
+                "--disable-features=HttpsFirstBalancedModeAutoEnable",
+            ],
         });
         const page = await browser.newPage();
 
