@@ -48,7 +48,7 @@ export class PostsService {
 
                 const { title, content } = data;
                 const image = await this.getImage(query);
-                const categoryId = await this.getCategoryId(query);
+                const categoryId = await this.getCategoryId(content);
 
                 if (!image) {
                     console.warn(
@@ -132,7 +132,7 @@ export class PostsService {
         const categories = await this.categoryModel.findAll();
         const categoryList = categories.map((c) => c.name).join("\n");
         const prompt = `
-			Определи, к какой категории из списка относится запрос: "${query}".  
+			Определи, к какой категории из списка относится контент: "${query}".  
 			Если запрос не подходит ни к одной категории или список категорий пуст, придумай наиболее подходящее название категории.  
 			Ответ должен содержать **только одно слово** — название категории, **без пояснений и комментариев**.  
 
