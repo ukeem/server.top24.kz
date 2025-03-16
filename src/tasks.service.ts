@@ -21,7 +21,7 @@ import { PostsService } from "./posts/posts.service";
 export class TasksService implements OnModuleInit {
     constructor(private readonly postsService: PostsService) {}
 
-    @Cron("0 0,144 0-23 * * *")
+    @Cron("0 0,30 0-23/2 * * *")
     async handleCron1() {
         console.log("⏳ Запуск addPosts()...");
         try {
