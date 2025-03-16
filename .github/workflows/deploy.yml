@@ -22,5 +22,5 @@ jobs:
                       cd /var/www/server.top24.kz
                       git pull origin main
                       npm install
-                      npm build
+                      npm run build
                       pm2 restart server
