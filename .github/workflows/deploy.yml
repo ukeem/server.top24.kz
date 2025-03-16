@@ -22,6 +22,7 @@ jobs:
                       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
                       nvm use 22
                       cd /var/www/server.top24.kz
+                      git fetch --all
                       git pull origin main
                       rm -rf node_modules package-lock.json dist
                       npm install
