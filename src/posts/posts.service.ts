@@ -445,6 +445,7 @@ export class PostsService {
         return this.postModel.findAll({
             where: { id: posts.map((p: any) => p.id) },
             include: [{ model: Category }],
+            order: [["createdAt", "DESC"]],
         });
     }
 
