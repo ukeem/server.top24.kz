@@ -17,7 +17,7 @@ export class TasksService implements OnModuleInit {
             console.error("❌ Ошибка в addPosts():", error);
         }
     }
-// // }
+}
 // export class TasksService {
 //     constructor(private readonly postsService: PostsService) {}
 
