@@ -12,7 +12,7 @@ async function bootstrap() {
         origin: [
             "https://top24.kz",
             "https://www.top24.kz",
-            // "http://localhost:3000",
+            "http://localhost:3000",
         ], // Разрешаем запросы с фронтенда
         methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
         allowedHeaders: "Content-Type, Authorization", // Разрешаем использование заголовков
