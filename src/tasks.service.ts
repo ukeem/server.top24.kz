@@ -44,12 +44,12 @@ export class TasksService implements OnModuleInit {
     }
 
     async onModuleInit() {
-        console.log("⏳ Запуск truncateQueries()...");
+        console.log("⏳ Запуск addPosts()...");
         try {
-            await this.postsService.truncateQueries();
-            console.log("✅ truncateQueries() выполнен успешно.");
+            await this.postsService.addPosts();
+            console.log("✅ addPosts() выполнен успешно.");
         } catch (error) {
-            console.error("❌ Ошибка в truncateQueries():", error);
+            console.error("❌ Ошибка в addPosts():", error);
         }
     }
 }
