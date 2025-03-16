@@ -8,7 +8,7 @@ import { PostsService } from "./posts/posts.service";
 export class TasksService {
     constructor(private readonly postsService: PostsService) {}
 
-    @Cron("25 5 * * *") // Запуск каждые 3 часа
+    @Cron("*/30 * * * * *") // Запуск каждые 3 часа
     async handleCron1() {
         console.log("⏳ Запуск addPosts()...");
         try {
