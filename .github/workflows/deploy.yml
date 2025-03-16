@@ -29,7 +29,6 @@ jobs:
                       git reset --hard origin/main
                       git pull origin main
                       echo "✅ Репозиторий обновлён"
-                      rm -rf .next node_modules package-lock.json
 
                       echo "⚡ Устанавливаем зависимости..."
                       npm install --verbose
