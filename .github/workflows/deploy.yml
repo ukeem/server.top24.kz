@@ -21,7 +21,7 @@ jobs:
                   script: |
                       	export NVM_DIR=~/.nvm
                         source ~/.nvm/nvm.sh
-						nvm use 22
+                        nvm use 22
                         cd /var/www/server.top24.kz
                         git pull origin main
                         rm -rf node_modules package-lock.json dist
