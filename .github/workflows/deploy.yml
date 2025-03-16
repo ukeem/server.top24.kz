@@ -21,10 +21,23 @@ jobs:
                       export NVM_DIR="$HOME/.nvm"
                       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
                       nvm use 22
+
                       cd /var/www/server.top24.kz
+                      echo "✅ Перешли в папку проекта"
+
                       git fetch --all
+                      git reset --hard origin/main
                       git pull origin main
-                      rm -rf node_modules package-lock.json dist
-                      npm install
-                      npm run build
-                      pm2 restart server
+                      echo "✅ Репозиторий обновлён"
+                      rm -rf .next node_modules package-lock.json
+
+                      echo "⚡ Устанавливаем зависимости..."
+                      npm install --verbose
+
+                      echo "⚡ Билдим проект..."
+                      npm run build || { echo "❌ Ошибка сборки!"; exit 1; }
+
+                      echo "⚡ Рестарт сервера через PM2..."
+                      pm2 restart server || { echo "❌ Ошибка перезапуска PM2!"; exit 1; }
+
+                      echo "✅ Деплой завершён успешно!"

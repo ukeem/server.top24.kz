@@ -18,7 +18,7 @@ import { PostsService } from "./posts/posts.service";
 //         }
 //     }
 // }
-export class TasksService implements OnModuleInit {
+export class TasksService {
     constructor(private readonly postsService: PostsService) {}
 
     @Cron("0 0,30 0-23/2 * * *")
@@ -40,16 +40,6 @@ export class TasksService implements OnModuleInit {
             console.log("✅ truncateQueries() выполнен успешно.");
         } catch (error) {
             console.error("❌ Ошибка в truncateQueries():", error);
-        }
-    }
-
-    async onModuleInit() {
-        console.log("⏳ Запуск addPosts()...");
-        try {
-            await this.postsService.addPosts();
-            console.log("✅ addPosts() выполнен успешно.");
-        } catch (error) {
-            console.error("❌ Ошибка в addPosts():", error);
         }
     }
 }
