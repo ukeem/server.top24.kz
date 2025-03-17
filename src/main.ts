@@ -8,16 +8,19 @@ import * as express from "express";
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
-    app.enableCors({
-        origin: [
-            "https://top24.kz",
-            "https://www.top24.kz",
-            "http://localhost:3000",
-        ], // Разрешаем запросы с фронтенда
-        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-        allowedHeaders: "Content-Type, Authorization", // Разрешаем использование заголовков
-        credentials: true, // Разрешаем передачу cookies (если нужно)
-    });
+    app
+        .enableCors
+        // 	{
+        //     origin: [
+        //         "https://top24.kz",
+        //         "https://www.top24.kz",
+        //         "http://localhost:3000",
+        //     ], // Разрешаем запросы с фронтенда
+        //     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+        //     allowedHeaders: "Content-Type, Authorization", // Разрешаем использование заголовков
+        //     credentials: true, // Разрешаем передачу cookies (если нужно)
+        // }
+        ();
 
     app.setGlobalPrefix("api");
     // Делаем папку images доступной по /images
